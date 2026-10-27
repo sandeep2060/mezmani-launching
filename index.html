@@ -1,253 +1,709 @@
 
-<div class="mezmani-pop">
-  <div class="mezmani-light"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="Mezmani is coming soon. A smarter way to manage restaurant operations, orders, and business.">
 
-  <button class="mezmani-x"
-    onclick="this.closest('.mezmani-pop').remove()"
-    aria-label="Close">&times;</button>
+  <title>Mezmani — Coming Soon</title>
 
-  <img class="mezmani-brand"
-    src="https://daruadmin.vercel.app/mezmani_logo_bg.svg"
-    alt="Mezmani.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <div class="mezmani-status">
-    <span></span> BUTWAL, ARE YOU READY?
+  <style>
+    :root {
+      --bg: #090909;
+      --accent: #d8ff3e;
+      --text: #ffffff;
+      --muted: #999999;
+      --border: rgba(255,255,255,0.10);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      position: relative;
+      isolation: isolate;
+    }
+
+    /* Background texture */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+    }
+
+    /* Animated background lights */
+    .ambient {
+      position: fixed;
+      z-index: -2;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      opacity: 0.12;
+      animation: ambientMove 12s ease-in-out infinite alternate;
+    }
+
+    .ambient-one {
+      background: var(--accent);
+      top: -260px;
+      left: -180px;
+    }
+
+    .ambient-two {
+      background: #7777ff;
+      right: -250px;
+      bottom: -240px;
+      animation-delay: -6s;
+    }
+
+    @keyframes ambientMove {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(100px, 80px) scale(1.2); }
+    }
+
+    /* Main page */
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      padding: 28px 6%;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      animation: fadeDown 1s ease both;
+    }
+
+    /* Actual Mezmani logo */
+    .logo-link {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      animation: logoEntrance 1.2s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .mezmani-logo {
+      display: block;
+      width: 90%;
+      max-width: 900px;
+      max-height: 230px;
+      height: auto;
+      object-fit: contain;
+      transform-origin: center;
+      filter: drop-shadow(0 0 18px rgba(216,255,62,.10));
+      animation: logoFloat 4s ease-in-out 1.2s infinite;
+      transition: filter .4s ease;
+    }
+
+    .logo-link:hover .mezmani-logo {
+      filter: drop-shadow(0 0 28px rgba(216,255,62,.25));
+    }
+
+    @keyframes logoEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(25px) scale(.94);
+        filter: blur(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    /* Status indicator */
+    .status {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      background: rgba(255,255,255,.025);
+      color: #d0d0d0;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    /* Hero section */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 0;
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      animation: fadeUp .8s .2s both;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(58px, 10vw, 120px);
+      line-height: .98;
+      font-weight: 700;
+      letter-spacing: -.075em;
+      animation: fadeUp .9s .35s both;
+    }
+
+    .headline-top {
+      display: block;
+      color: #ffffff;
+    }
+
+    .headline-bottom {
+      display: block;
+      position: relative;
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto;
+      color: var(--accent);
+      background: linear-gradient(
+        100deg,
+        #d8ff3e 5%,
+        #f4ffc2 45%,
+        #d8ff3e 80%
+      );
+      background-size: 200% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShine 6s linear infinite;
+    }
+
+    .headline-bottom::after {
+      content: "";
+      position: absolute;
+      height: 4px;
+      width: 58%;
+      bottom: -15px;
+      left: 21%;
+      border-radius: 50%;
+      background: var(--accent);
+      filter: blur(9px);
+      opacity: .45;
+      animation: underlineGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes gradientShine {
+      to { background-position: 200% center; }
+    }
+
+    @keyframes underlineGlow {
+      from { opacity: .2; transform: scaleX(.75); }
+      to { opacity: .7; transform: scaleX(1.08); }
+    }
+
+    .description {
+      max-width: 510px;
+      margin: 38px auto 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+      animation: fadeUp .9s .5s both;
+    }
+
+    .description strong {
+      color: #eeeeee;
+      font-weight: 700;
+    }
+
+    /* Demo button */
+    .actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 32px;
+      animation: fadeUp .9s .65s both;
+    }
+
+    .demo-btn {
+      position: relative;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      min-width: 190px;
+      padding: 17px 25px;
+      overflow: hidden;
+      border: 1px solid var(--accent);
+      border-radius: 7px;
+      background: var(--accent);
+      color: #101010;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .demo-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        110deg,
+        transparent 20%,
+        rgba(255,255,255,.7) 48%,
+        transparent 75%
+      );
+      transform: translateX(-120%);
+      animation: buttonShine 4.5s 2s infinite;
+      pointer-events: none;
+    }
+
+    .demo-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 38px rgba(216,255,62,.18);
+    }
+
+    .demo-btn:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 5px;
+    }
+
+    .arrow {
+      display: inline-block;
+      font-size: 19px;
+      transition: transform .3s ease;
+    }
+
+    .demo-btn:hover .arrow {
+      transform: translate(3px, -3px);
+    }
+
+    @keyframes buttonShine {
+      0%, 65% { transform: translateX(-120%); }
+      85%, 100% { transform: translateX(120%); }
+    }
+
+    .note {
+      margin-top: 20px;
+      color: #777;
+      font-size: 12px;
+      animation: fadeUp .9s .8s both;
+    }
+
+    .note span {
+      color: var(--accent);
+    }
+
+    /* Decorative animated rings */
+    .orbit {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(216,255,62,.065);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      animation: orbitRotate 45s linear infinite;
+    }
+
+    .orbit::before,
+    .orbit::after {
+      content: "";
+      position: absolute;
+      inset: 35px;
+      border: 1px solid rgba(216,255,62,.045);
+      border-radius: 50%;
+    }
+
+    .orbit::after {
+      inset: 75px;
+    }
+
+    .spark {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 14px var(--accent);
+    }
+
+    .spark-one {
+      top: 14%;
+      left: 23%;
+      animation: pulse 2s infinite;
+    }
+
+    .spark-two {
+      right: 14%;
+      bottom: 23%;
+      animation: pulse 2s .7s infinite;
+    }
+
+    @keyframes orbitRotate {
+      from { rotate: 0deg; }
+      to { rotate: 360deg; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .35; transform: scale(.7); }
+    }
+
+    /* Footer */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 22px 0 4px;
+      border-top: 1px solid rgba(255,255,255,.09);
+      color: #777;
+      font-size: 11px;
+      letter-spacing: .4px;
+      animation: fadeUp 1s .9s both;
+    }
+
+    .footer-brand {
+      color: #aaaaaa;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Tablet */
+    @media (max-width: 900px) {
+      .page {
+        padding: 26px 5%;
+      }
+
+      .mezmani-logo {
+        max-height: 190px;
+      }
+
+      h1 {
+        font-size: clamp(54px, 10vw, 90px);
+      }
+
+      .orbit {
+        width: 330px;
+        height: 330px;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .page {
+        padding: 24px 5%;
+      }
+
+      header {
+        gap: 18px;
+      }
+
+      .mezmani-logo {
+        width: 90%;
+        max-height: 135px;
+      }
+
+      .status {
+        padding: 9px 12px;
+        font-size: 9px;
+        letter-spacing: 1.2px;
+      }
+
+      main {
+        padding: 55px 0;
+      }
+
+      .eyebrow {
+        gap: 8px;
+        margin-bottom: 25px;
+        font-size: 9px;
+        letter-spacing: 2px;
+      }
+
+      .eyebrow::before,
+      .eyebrow::after {
+        width: 15px;
+      }
+
+      h1 {
+        font-size: clamp(43px, 12.2vw, 70px);
+        letter-spacing: -.065em;
+        line-height: 1.04;
+      }
+
+      .headline-bottom::after {
+        height: 3px;
+        bottom: -11px;
+      }
+
+      .description {
+        max-width: 350px;
+        margin-top: 32px;
+        font-size: 14px;
+        line-height: 1.85;
+      }
+
+      .actions {
+        margin-top: 27px;
+      }
+
+      .demo-btn {
+        width: 100%;
+        max-width: 270px;
+        min-height: 53px;
+        padding: 15px 20px;
+      }
+
+      .note {
+        max-width: 280px;
+        margin: 17px auto 0;
+        line-height: 1.7;
+      }
+
+      .orbit {
+        width: 260px;
+        height: 260px;
+        opacity: .7;
+      }
+
+      .orbit::before {
+        inset: 25px;
+      }
+
+      .orbit::after {
+        inset: 55px;
+      }
+
+      footer {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+        padding-top: 18px;
+        padding-bottom: 5px;
+        font-size: 10px;
+      }
+    }
+
+    /* Extra small phones */
+    @media (max-width: 360px) {
+      .page {
+        padding: 20px 4%;
+      }
+
+      .mezmani-logo {
+        width: 90%;
+        max-height: 110px;
+      }
+
+      h1 {
+        font-size: 41px;
+      }
+
+      .description {
+        font-size: 13px;
+      }
+
+      .eyebrow {
+        letter-spacing: 1.5px;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <div class="page">
+
+    <header>
+      <a href="/" class="logo-link" aria-label="Mezmani homepage">
+        <img
+          src="https://daruadmin.vercel.app/mezmani_logo_bg.svg"
+          alt="Mezmani Logo"
+          class="mezmani-logo"
+          fetchpriority="high"
+        >
+      </a>
+
+      <div class="status">
+        <span class="status-dot"></span>
+        Under Development
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="main-heading">
+
+        <div class="orbit" aria-hidden="true">
+          <span class="spark spark-one"></span>
+          <span class="spark spark-two"></span>
+        </div>
+
+        <div class="eyebrow">Something exciting is brewing</div>
+
+        <h1 id="main-heading">
+          <span class="headline-top">WE'RE</span>
+          <span class="headline-bottom">COMING SOON</span>
+        </h1>
+
+        <p class="description">
+          A smarter way to manage your restaurant.
+          <strong>Mezmani</strong> is bringing your restaurant operations
+          together in one simple, powerful platform.
+          Something better is on its way.
+        </p>
+
+        <div class="actions">
+          <a
+            class="demo-btn"
+            href="https://daruadmin.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>See Live Demo</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <p class="note">
+          Don't wait to explore.
+          <span>Experience the demo</span> while we build something great.
+        </p>
+
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-brand">
+        © <span id="year">2026</span>
+        <span class="accent">MEZMANI</span>
+      </div>
+
+      <div>Built for better business.</div>
+
+      <div>Stay tuned <span class="accent">✳</span></div>
+    </footer>
+
   </div>
 
-  <h2 class="mezmani-heading">
-    WE'RE<br>
-    <span>COMING</span><br>
-    <span class="mezmani-soon">SOON.</span>
-  </h2>
-
-  <div class="mezmani-line"></div>
-
-  <p class="mezmani-desc">
-    <strong>Good Food. Cold Drinks. Late Nights.</strong>
-    <br>
-    Butwal, get ready for Mezmani.com — your upcoming
-    destination for food, drinks and everyday essentials,
-    even when the night gets late.
-  </p>
-
-  <a class="mezmani-demo"
-    href="https://daruadmin.vercel.app/"
-    target="_blank"
-    rel="noopener noreferrer">
-    SEE THE DEMO <span>↗</span>
-  </a>
-
-  <div class="mezmani-tagline">YOUR NIGHT. YOUR WAY.</div>
-</div>
-
-<style>
-.mezmani-pop {
-  --mgold: #ffc45e;
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  width: min(440px, calc(100% - 28px));
-  margin: 35px auto;
-  padding: 34px 30px 26px;
-  border: 1px solid rgba(255,196,94,.55);
-  border-radius: 25px;
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(255,171,47,.17), transparent 48%),
-    linear-gradient(145deg, #181818, #080a0d 75%);
-  color: #fff;
-  text-align: center;
-  font-family: "Manrope", Arial, sans-serif;
-  box-shadow: 0 20px 70px rgba(0,0,0,.6),
-              0 0 35px rgba(255,177,55,.08);
-  animation: mzAppear .65s ease-out both;
-}
-
-.mezmani-pop * { box-sizing: border-box; }
-
-.mezmani-light {
-  position: absolute;
-  z-index: -1;
-  width: 230px;
-  height: 230px;
-  top: -130px;
-  left: calc(50% - 115px);
-  border-radius: 50%;
-  background: #ffad35;
-  filter: blur(85px);
-  opacity: .35;
-  pointer-events: none;
-}
-
-.mezmani-x {
-  position: absolute;
-  top: 12px;
-  right: 13px;
-  width: 34px;
-  height: 34px;
-  border: 1px solid #45413a;
-  border-radius: 50%;
-  background: #202020;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  transition: .25s;
-}
-
-.mezmani-x:hover {
-  background: var(--mgold);
-  color: #111;
-  transform: rotate(90deg);
-}
-
-.mezmani-brand {
-  display: block;
-  width: 88px;
-  height: 82px;
-  object-fit: contain;
-  margin: 0 auto 17px;
-  filter: drop-shadow(0 0 15px rgba(255,196,94,.25));
-  animation: mzFloat 3s ease-in-out infinite;
-}
-
-.mezmani-status {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  padding: 9px 13px;
-  border: 1px solid rgba(255,196,94,.42);
-  border-radius: 40px;
-  background: rgba(255,196,94,.09);
-  color: #ffdb9b;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 1.8px;
-}
-
-.mezmani-status span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #ffc45e;
-  box-shadow: 0 0 13px #ffc45e;
-  animation: mzPulse 1.3s infinite;
-}
-
-.mezmani-heading {
-  margin: 22px 0 13px;
-  font-family: "Manrope", Arial, sans-serif;
-  font-size: clamp(55px, 13vw, 76px);
-  line-height: .91;
-  font-weight: 900;
-  letter-spacing: -4px;
-  text-transform: uppercase;
-}
-
-.mezmani-heading > span:first-of-type {
-  color: #fff;
-  text-shadow: 0 3px 30px rgba(255,255,255,.12);
-}
-
-.mezmani-heading .mezmani-soon {
-  display: inline-block;
-  margin-top: 7px;
-  color: var(--mgold);
-  text-shadow: 0 0 30px rgba(255,196,94,.24);
-  animation: mzGlow 2.5s ease-in-out infinite alternate;
-}
-
-.mezmani-line {
-  width: 65px;
-  height: 3px;
-  margin: 23px auto 19px;
-  border-radius: 10px;
-  background: linear-gradient(90deg, transparent, var(--mgold), transparent);
-}
-
-.mezmani-desc {
-  max-width: 330px;
-  margin: 0 auto;
-  color: #c0c2c7;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.9;
-}
-
-.mezmani-desc strong {
-  color: white;
-  font-size: 14px;
-  font-weight: 900;
-}
-
-.mezmani-demo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 17px;
-  width: 100%;
-  min-height: 55px;
-  margin-top: 25px;
-  border-radius: 10px;
-  color: #171109;
-  background: linear-gradient(110deg, #ffda8b, #ffb83f);
-  box-shadow: 0 7px 27px rgba(255,184,63,.24);
-  font-size: 14px;
-  font-weight: 900;
-  letter-spacing: 1.4px;
-  text-decoration: none;
-  transition: transform .25s, box-shadow .25s;
-}
-
-.mezmani-demo:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(255,184,63,.4);
-}
-
-.mezmani-demo span {
-  font-size: 20px;
-  transition: transform .25s;
-}
-
-.mezmani-demo:hover span {
-  transform: translate(3px,-3px);
-}
-
-.mezmani-tagline {
-  margin-top: 22px;
-  color: #8f8d87;
-  font-size: 9px;
-  font-weight: 900;
-  letter-spacing: 4px;
-}
-
-@keyframes mzAppear {
-  from { opacity: 0; transform: translateY(18px) scale(.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes mzFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-7px); }
-}
-
-@keyframes mzPulse {
-  50% { opacity: .45; }
-}
-
-@keyframes mzGlow {
-  from { text-shadow: 0 0 10px rgba(255,196,94,.12); }
-  to { text-shadow: 0 0 28px rgba(255,196,94,.55); }
-}
-
-@media (max-width: 380px) {
-  .mezmani-pop { padding: 31px 20px 23px; }
-  .mezmani-heading { letter-spacing: -3px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mezmani-pop, .mezmani-brand, .mezmani-status span,
-  .mezmani-heading .mezmani-soon {
-    animation: none;
-  }
-}
-</style>
+  <script>
+    // Automatically update the copyright year.
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
