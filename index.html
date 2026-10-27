@@ -1,0 +1,253 @@
+
+<div class="mezmani-pop">
+  <div class="mezmani-light"></div>
+
+  <button class="mezmani-x"
+    onclick="this.closest('.mezmani-pop').remove()"
+    aria-label="Close">&times;</button>
+
+  <img class="mezmani-brand"
+    src="https://daruadmin.vercel.app/mezmani_logo_bg.svg"
+    alt="Mezmani.com">
+
+  <div class="mezmani-status">
+    <span></span> BUTWAL, ARE YOU READY?
+  </div>
+
+  <h2 class="mezmani-heading">
+    WE'RE<br>
+    <span>COMING</span><br>
+    <span class="mezmani-soon">SOON.</span>
+  </h2>
+
+  <div class="mezmani-line"></div>
+
+  <p class="mezmani-desc">
+    <strong>Good Food. Cold Drinks. Late Nights.</strong>
+    <br>
+    Butwal, get ready for Mezmani.com — your upcoming
+    destination for food, drinks and everyday essentials,
+    even when the night gets late.
+  </p>
+
+  <a class="mezmani-demo"
+    href="https://daruadmin.vercel.app/"
+    target="_blank"
+    rel="noopener noreferrer">
+    SEE THE DEMO <span>↗</span>
+  </a>
+
+  <div class="mezmani-tagline">YOUR NIGHT. YOUR WAY.</div>
+</div>
+
+<style>
+.mezmani-pop {
+  --mgold: #ffc45e;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: min(440px, calc(100% - 28px));
+  margin: 35px auto;
+  padding: 34px 30px 26px;
+  border: 1px solid rgba(255,196,94,.55);
+  border-radius: 25px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,171,47,.17), transparent 48%),
+    linear-gradient(145deg, #181818, #080a0d 75%);
+  color: #fff;
+  text-align: center;
+  font-family: "Manrope", Arial, sans-serif;
+  box-shadow: 0 20px 70px rgba(0,0,0,.6),
+              0 0 35px rgba(255,177,55,.08);
+  animation: mzAppear .65s ease-out both;
+}
+
+.mezmani-pop * { box-sizing: border-box; }
+
+.mezmani-light {
+  position: absolute;
+  z-index: -1;
+  width: 230px;
+  height: 230px;
+  top: -130px;
+  left: calc(50% - 115px);
+  border-radius: 50%;
+  background: #ffad35;
+  filter: blur(85px);
+  opacity: .35;
+  pointer-events: none;
+}
+
+.mezmani-x {
+  position: absolute;
+  top: 12px;
+  right: 13px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #45413a;
+  border-radius: 50%;
+  background: #202020;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.mezmani-x:hover {
+  background: var(--mgold);
+  color: #111;
+  transform: rotate(90deg);
+}
+
+.mezmani-brand {
+  display: block;
+  width: 88px;
+  height: 82px;
+  object-fit: contain;
+  margin: 0 auto 17px;
+  filter: drop-shadow(0 0 15px rgba(255,196,94,.25));
+  animation: mzFloat 3s ease-in-out infinite;
+}
+
+.mezmani-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 9px 13px;
+  border: 1px solid rgba(255,196,94,.42);
+  border-radius: 40px;
+  background: rgba(255,196,94,.09);
+  color: #ffdb9b;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+}
+
+.mezmani-status span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffc45e;
+  box-shadow: 0 0 13px #ffc45e;
+  animation: mzPulse 1.3s infinite;
+}
+
+.mezmani-heading {
+  margin: 22px 0 13px;
+  font-family: "Manrope", Arial, sans-serif;
+  font-size: clamp(55px, 13vw, 76px);
+  line-height: .91;
+  font-weight: 900;
+  letter-spacing: -4px;
+  text-transform: uppercase;
+}
+
+.mezmani-heading > span:first-of-type {
+  color: #fff;
+  text-shadow: 0 3px 30px rgba(255,255,255,.12);
+}
+
+.mezmani-heading .mezmani-soon {
+  display: inline-block;
+  margin-top: 7px;
+  color: var(--mgold);
+  text-shadow: 0 0 30px rgba(255,196,94,.24);
+  animation: mzGlow 2.5s ease-in-out infinite alternate;
+}
+
+.mezmani-line {
+  width: 65px;
+  height: 3px;
+  margin: 23px auto 19px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, transparent, var(--mgold), transparent);
+}
+
+.mezmani-desc {
+  max-width: 330px;
+  margin: 0 auto;
+  color: #c0c2c7;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.9;
+}
+
+.mezmani-desc strong {
+  color: white;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.mezmani-demo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 17px;
+  width: 100%;
+  min-height: 55px;
+  margin-top: 25px;
+  border-radius: 10px;
+  color: #171109;
+  background: linear-gradient(110deg, #ffda8b, #ffb83f);
+  box-shadow: 0 7px 27px rgba(255,184,63,.24);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 1.4px;
+  text-decoration: none;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.mezmani-demo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(255,184,63,.4);
+}
+
+.mezmani-demo span {
+  font-size: 20px;
+  transition: transform .25s;
+}
+
+.mezmani-demo:hover span {
+  transform: translate(3px,-3px);
+}
+
+.mezmani-tagline {
+  margin-top: 22px;
+  color: #8f8d87;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 4px;
+}
+
+@keyframes mzAppear {
+  from { opacity: 0; transform: translateY(18px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes mzFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes mzPulse {
+  50% { opacity: .45; }
+}
+
+@keyframes mzGlow {
+  from { text-shadow: 0 0 10px rgba(255,196,94,.12); }
+  to { text-shadow: 0 0 28px rgba(255,196,94,.55); }
+}
+
+@media (max-width: 380px) {
+  .mezmani-pop { padding: 31px 20px 23px; }
+  .mezmani-heading { letter-spacing: -3px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mezmani-pop, .mezmani-brand, .mezmani-status span,
+  .mezmani-heading .mezmani-soon {
+    animation: none;
+  }
+}
+</style>
